@@ -1,5 +1,5 @@
 %
-clear;
+% clear;
 close all;
 
 
@@ -29,8 +29,16 @@ t = datenum(Ts,'dd-mm-yyyy HH:MM');
 
 %%
 V_ms = d.ff_kt_/1.943844;
+V_ms(V_ms==0) = NaN;
 wdir = d.dd___;
 
+md = 270 - wdir;
+
+Uw = V_ms.*cosd(md);
+Vw = V_ms.*sind(md);
+
+
+return;
 figure
 histogram2(wdir,V_ms,[36 12],'facecolor','flat','normalization','probability')
 view(2)

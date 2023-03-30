@@ -41,8 +41,20 @@ title(tll.Station(ix))
 
 ix = find(strcmp(tll.Station,'cmet'));
 pres_cmet = squeeze(msl(ix_lon(ix),ix_lat(ix),:));
+u10_cmet = squeeze(u10(ix_lon(ix),ix_lat(ix),:));
+v10_cmet = squeeze(v10(ix_lon(ix),ix_lat(ix),:));
+
 ix = find(strcmp(tll.Station,'greg'));
 pres_greg = squeeze(msl(ix_lon(ix),ix_lat(ix),:));
+u10_greg = squeeze(u10(ix_lon(ix),ix_lat(ix),:));
+v10_greg = squeeze(v10(ix_lon(ix),ix_lat(ix),:));
+
+figure
+plot(time,u10_greg,time,v10_greg), legend('U10 Bahia Gregorio','V10 BG')
+return;
+
+
+
 
 figure
 subplot(211)
