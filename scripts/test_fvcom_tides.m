@@ -1,3 +1,6 @@
+% 14 aug 2023
+% m williams
+
 
 clear
 close all;
@@ -48,10 +51,8 @@ phaseM2deg = TIDECON(ixM2,3);
 
 
 
-% 
-% 
-% return;
-% 
+% to specify tidal components (commented out, did not significantly improve
+% things):
 % 
 % %% Force only a few constituents:
 % 
