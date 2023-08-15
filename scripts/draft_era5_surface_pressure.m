@@ -1,10 +1,15 @@
 
 
+clear all
+close all
+
 
 addpath ~/Research/general_scripts/matlabfunctions/m_map/
 
 % fn = '../external_data/era5/test_8feb2023_era5.nc';
 fn = '../external_data/era5/test_feb2023_era5.nc';
+fn = '../external_data/era5/march2023_chile_era5.nc';
+
 ncdisp(fn)
 
 
@@ -23,7 +28,7 @@ time = ncread(fn,'time');
 time = convert_era5_matlab_time(time);
 
 
-
+return;
 % lat/long table:
 tll = readtable('../external_data/ioc_station_latlong.csv');
 
@@ -51,7 +56,7 @@ v10_greg = squeeze(v10(ix_lon(ix),ix_lat(ix),:));
 
 figure
 plot(time,u10_greg,time,v10_greg), legend('U10 Bahia Gregorio','V10 BG')
-return;
+% return;
 
 
 

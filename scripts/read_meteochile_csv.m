@@ -3,7 +3,8 @@
 close all;
 
 
-fn = '../../sandbox/station_520006_var_28_1967_2023.csv';
+% fn = '../../sandbox/station_520006_var_28_1967_2023.csv';
+fn = '../../sandbox/station_270001_var_28_1960_1963.csv';
 
 d = readtable(fn);
 
