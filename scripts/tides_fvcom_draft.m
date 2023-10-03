@@ -1,5 +1,8 @@
 
-
+% testing reconstructing single component of water level:
+% eta = a*sin(omega*t + phi) 
+% phi: phase, omega angular frequency. 
+% possibly should be omega*t - phi, but looks ok with the below. 
 
 load('t_tideFitzRoy.mat')
 
@@ -31,5 +34,5 @@ end
 %%
 
 % from the internet
-tide_names=['S2';'M2';'N2';'K2';'K1'; 'P1';'O1';'Q1'];
-t_tide(elevation,'start time',[2010,1,1,0,0,0],'rayleigh',tide_names);
+%tide_names=['S2';'M2';'N2';'K2';'K1'; 'P1';'O1';'Q1'];
+%t_tide(elevation,'start time',[2010,1,1,0,0,0],'rayleigh',tide_names);

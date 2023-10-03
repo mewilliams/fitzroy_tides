@@ -1,5 +1,8 @@
 % 14 aug 2023
 % figure out sign on tidal potential.
+addpath ~/Research/general_scripts/matlabfunctions/
+presentation_figure_startup
+set(0,'defaultlinelinewidth',0.5);  % this should already be matlab default.
 
 
 clear
@@ -47,7 +50,9 @@ ylabel({'velocidad','[m/s]'})
 
 subplot(3,1,3)
 plot(time3,P_kW(1,:),'k')
-ylabel('P [kW/m^2]')
+% ylabel('P [kW/m^2]')
+ylabel('[kW/m^2]')
+
 datetick2('x')
 
 
@@ -68,14 +73,18 @@ for i = 1:5
         subplot(5,3,figix(i,1))
         plot(time3,v_FR_prom(i,:),'color',c(2,:)), hold all
         plot(time3,u_FR_prom(i,:),'color',c(1,:))
-        ylabel({'velocidad','[m/s]'})
+%         ylabel({'velocidad','[m/s]'})
+                ylabel({'[m/s]'})
+
         ylim([-4 4])
     else
 
         subplot(5,3,figix(i,1))
         plot(time3,u_FR_prom(i,:),'color',c(1,:)), hold all
         plot(time3,v_FR_prom(i,:),'color',c(2,:))
-        ylabel({'velocidad','[m/s]'})
+%         ylabel({'velocidad','[m/s]'})
+                ylabel({'[m/s]'})
+
         ylim([-4 4])
         if i==1  % add title to only the top row
             title('(U,V)') 
@@ -85,7 +94,9 @@ for i = 1:5
 
     subplot(5,3,figix(i,2))
     plot(time3,magnitude_velocity(i,:),'color',c(3,:))
-    ylabel({'velocidad','[m/s]'})
+%     ylabel({'velocidad','[m/s]'})
+        ylabel({'[m/s]'})
+
     ylim([0 4.5])
     if i==1 % add title to only the top row
         title('$\sqrt{U^2 + V^2}$','Interpreter','latex')
@@ -93,7 +104,9 @@ for i = 1:5
 
     subplot(5,3,figix(i,3))
     plot(time3,P_kW(i,:),'k')
-    ylabel('P [kW/m^2]')
+%     ylabel('P [kW/m^2]')
+    ylabel('[kW/m^2]')
+
 
     ylim([-50 20])
     if i==1 % add title to only the top row
@@ -104,7 +117,36 @@ end
 % end
 xlim([datenum(2021,4,2) datenum(2021,05,14)])
 
-datetick2('x','keeplimits')
+datetick2('x','dd')
+xlim([datenum(2021,4,2) datenum(2021,5,14)])
+
+for i = 13:15
+subplot(5,3,i)
+xlabel('April - May 2021')
+end
+
+journal_figure_size_bs(20,15)
+saveas(gcf,'potenciafig_size1.png')
+journal_figure_size_bs(30,15)
+saveas(gcf,'potenciafig_size2.png')
+journal_figure_size_bs(25,20)
+saveas(gcf,'potenciafig_size3.png')
+
+xlim([datenum(2021,5,5) datenum(2021,5,7)])
+
+for i = 13:15
+subplot(5,3,i)
+xlabel('May 2021')
+end
+
+datetick2('x','dd','keeplimits')
+saveas(gcf,'potenciafig_size3_zoom.png')
+
+xlim([datenum(2021,5,1) datenum(2021,5,3)])
+datetick2('x','dd','keeplimits')
+saveas(gcf,'potenciafig_size3_zoom2.png')
+
+
 
 
 
