@@ -1,7 +1,7 @@
 clear
 close all
 
-fn = 'Angostura Santa Cruz_ canal Fitz Roy_2016.csv';
+fn = '../external_data/adcp_shoa_fitzroy/Angostura Santa Cruz_ canal Fitz Roy_2016.csv';
 
 fid = fopen(fn);
 
