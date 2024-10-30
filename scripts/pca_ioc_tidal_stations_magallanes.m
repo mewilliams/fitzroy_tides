@@ -52,12 +52,27 @@ T = tssgreg;
 WL = [wlpedn',wlptar',wlgreg'];
 WL = detrend(WL,0,'omitnan');
 
+
 for i = 1:3
     WL(:,i) = fillmissing(WL(:,i),'constant',0);
 end
 
 Resid = [rpedn',rptar',rgreg'];
 R = detrend(Resid,0);
+
+
+figure
+subplot(211)
+
+plot(T,WL)
+subplot(212)
+plot(T,R)
+
+figure
+[c,lags] = xcorr(detrend(rpedn),detrend(rptar));
+plot(lags,c), title(num2str(lags(c==max(c))))
+
+return;
 
 [C,L] = eig(cov(R));
 PC1 = R*C(:,1);
