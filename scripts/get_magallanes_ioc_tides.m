@@ -1,3 +1,4 @@
+% update 30 oct 2024 to get 2016 tides to compare with SHOA data:
 
 % cmet
 % https://www.ioc-sealevelmonitoring.org/station.php?code=cmet
@@ -10,8 +11,10 @@
 addpath ~/Research/general_scripts/IOC_QQ_NOC/
 
 mode = 'auto';
-dateS = datenum(2019,1,1);
-dateE = datenum(2023,3,1);
+% dateS = datenum(2019,1,1);
+% dateE = datenum(2023,3,1);
+dateS = datenum(2015,12,31);
+dateE = datenum(2017,1,1);
 
 % 
 % datadir = '../external_data/caletameteo/';

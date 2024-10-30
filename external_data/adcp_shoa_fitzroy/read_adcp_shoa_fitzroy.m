@@ -98,3 +98,80 @@ ylabel('Velocity [m/s]')
 
 yyaxis right
 plot(t,NM_m), ylabel('Depth [m]')
+
+
+
+figure
+subplot(1,3,[1 2])
+pcolor(t,z,(u-mean(u,2,'omitnan'))')
+
+colorbar
+shading flat
+colormap(cbrewer('div','RdYlBu',256/2))
+colormap(flipud(colormap))
+cbax = colorbar;
+ylabel(cbax,'U - depth-avg U [m/s]' )
+
+ylabel('z [m]')
+xlabel('2016')
+
+datetick('x','dd mmm')
+
+subplot(1,3,3)
+plot(mean((u-mean(u,2,'omitnan')),'omitnan'),z)
+xlabel('Velocity U - $\overline{U}$','interpreter','latex')
+xlim([-.15 .15])
+title('ADCP Fitzroy, U - $\overline{U}$','interpreter','latex')
+xlabel('avg(Velocity U - $\overline{U}$)','interpreter','latex')
+
+
+
+
+ubar = mean(u,2,'omitnan');
+vbar = mean(v,2,'omitnan');
+%%
+clear i
+
+[NAME,FREQ,TIDECON,XOUT]=t_tide(ubar + i*vbar); % ugly
+
+%%
+% with U_TIDE: 
+% addpath('~/Research/general_scripts/matlabfunctions/UTideCurrentVersion/')
+
+
+coef = ut_solv ( t, ubar, vbar, -52.734,'auto');
+[ u_fit, v_fit ] = ut_reconstr( t, coef );
+
+coef_wl = ut_solv ( t,NM_m,[], -52.734,'auto');
+[ wl_fit ] = ut_reconstr( t, coef_wl );
+
+
+
+
+figure
+subplot(2,1,1)
+plot(t,NM_m)
+hold all
+plot(t,wl_fit)
+legend('Water level H','Tide(H)')
+ylabel('Instrument Depth (m)')
+datetick2('x','dd mmm')
+subplot(2,1,2)
+plot(t,ubar)
+hold all
+plot(t,u_fit)
+legend('Depth-avg U','Tide(U)')
+ylabel('velocity [m/s')
+ylabel('velocity [m/s]')
+xlabel('2016')
+datetick2('x','dd mmm')
+
+
+figure
+plot(ubar-u_fit,NM_m-wl_fit,'.')
+axis equal
+xlabel('Tidal residual U (m/s)')
+ylabel('Tidal residual water level (m)')
+title('UTide analysis $\overline{U}$ and $H$','interpreter','latex')
+
+% saveas(gcf,'~/Research/notes/images/202410/tidal_residual_Ubar_H.png')
